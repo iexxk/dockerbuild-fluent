@@ -2,6 +2,8 @@ FROM fluent/fluentd:v1.11-1
 
 # Use root account to use apk
 USER root
+#编译版本
+ARG  VERSION=v1.11
 
 # below RUN includes plugin as examples elasticsearch is not required
 # you may customize including plugins as you wish
@@ -12,7 +14,7 @@ RUN apk add --no-cache --update --virtual .build-deps \
  && apk del .build-deps \
  && rm -rf /tmp/* /var/tmp/* /usr/lib/ruby/gems/*/cache/*.gem
 
-COPY fluent.conf /fluentd/etc/
-COPY entrypoint.sh /bin/
+ADD https://raw.githubusercontent.com/fluent/fluentd-docker-image/master/$VERSION/alpine/fluent.conf /fluentd/etc/
+ADD https://raw.githubusercontent.com/fluent/fluentd-docker-image/master/$VERSION/alpine/entrypoint.sh /bin/
 
 USER fluent
