@@ -17,6 +17,6 @@ RUN apk add --no-cache --update --virtual .build-deps \
 ADD https://raw.githubusercontent.com/fluent/fluentd-docker-image/master/$VERSION/alpine/fluent.conf /fluentd/etc/
 ADD https://raw.githubusercontent.com/fluent/fluentd-docker-image/master/$VERSION/alpine/entrypoint.sh /bin/
 
-RUN chmod +x /sbin/docker-entrypoint.sh
+RUN chmod +x /bin/entrypoint.sh
 
 USER fluent
